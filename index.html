@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arunkarthik | Portfolio</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background-color: transparent; /* Transparent background */
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background when scrolled */
+        }
+
+        .navbar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d58b5b;
+        }
+
+        .navbar .menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar .menu li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .navbar .menu li a:hover {
+            color: #d58b5b;
+            border-bottom: 2px solid #d58b5b;
+        }
+
+        /* Main Section */
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 85%;
+            height: 100vh;
+            margin-top: 0;
+        }
+
+        /* Text Section */
+        .text-section {
+            max-width: 50%;
+        }
+
+        .text-section h1 {
+            font-size: 55px;
+            font-weight: bold;
+        }
+
+        .text-section h1 span {
+            color: #d58b5b;
+        }
+
+        .text-section p {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .text-section .btn-container {
+            margin-top: 20px;
+        }
+
+        .text-section .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: #d58b5b;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+
+        .text-section .btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid #d58b5b;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .social-icons a img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            box-shadow: 0 0 10px #d58b5b;
+            background-color: #d58b5b;
+        }
+
+        /* Typewriter Effect */
+        .typing-container {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .typing-text {
+            font-size: 55px;
+            font-weight: bold;
+            border-right: 3px solid #d58b5b;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            color: white;
+            animation: typing 4s steps(30, end) forwards, blink 0.8s infinite;
+        }
+
+        .typing-text .name-highlight {
+            color: #d58b5b;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 520px;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Profile Image and Circular Border */
+        .image-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animated-border {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animated-border::before,
+        .animated-border::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            box-shadow: 0 0 12px yellow;
+            animation: rotate 4s linear infinite;
+        }
+
+        .animated-border::before {
+            border-top: 4px solid yellow;
+            border-right: 4px solid yellow;
+            animation-delay: 0s;
+        }
+
+        .animated-border::after {
+            border-bottom: 4px solid yellow;
+            border-left: 4px solid yellow;
+            animation-delay: 2s;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Profile Image */
+        .profile-img {
+            width: 395px;
+            height: 395px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* About Me Section */
+        #about {
+            padding: 80px 0;
+            background-color: black;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 40px;
+            color: #d58b5b;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            max-width: 800px;
+            font-size: 18px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        /* Services Section */
+        #services {
+            padding: 80px 0;
+            background-color: black;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #services h2 {
+            font-size: 40px;
+            color: #d58b5b;
+            margin-bottom: 40px;
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+        }
+
+        .service-box {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(213, 139, 91, 0.5);
+        }
+
+        .service-box h3 {
+            font-size: 24px;
+            color: #d58b5b;
+            margin-bottom: 10px;
+        }
+
+        .service-box p {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 80px 0;
+            background-color: black;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #skills h2 {
+            font-size: 35px;
+            color: #d58b5b;
+            margin-bottom: 40px;
+        }
+
+        .skills-container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted #d58b5b;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item h4 {
+            font-size: 24px;
+            color: #d58b5b;
+            margin-bottom: 10px;
+        }
+
+        .skill-item p {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+            background-color: black;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 40px;
+            color: #d58b5b;
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 16px;
+            color: #d58b5b;
+            margin-bottom: 5px;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #d58b5b;
+            border-radius: 5px;
+            background-color: #222;
+            color: white;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: #d58b5b;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar .logo {
+                font-size: 24px;
+            }
+
+            .navbar .menu {
+                gap: 20px;
+            }
+
+            .navbar .menu li a {
+                font-size: 14px;
+            }
+
+            .container {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+                padding: 100px 20px;
+            }
+
+            .text-section {
+                max-width: 100%;
+            }
+
+            .text-section h1 {
+                font-size: 40px;
+            }
+
+            .text-section p {
+                font-size: 14px;
+            }
+
+            .image-container {
+                margin-top: 40px;
+                width: 300px;
+                height: 300px;
+            }
+
+            .animated-border,
+            .animated-border::before,
+            .animated-border::after {
+                width: 300px;
+                height: 300px;
+            }
+
+            .profile-img {
+                width: 295px;
+                height: 295px;
+            }
+
+            .services-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-box {
+                width: 100%;
+            }
+
+            .contact-form {
+                width: 90%;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header Scroll Effect */
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Arunkarthik</div>
+        <ul class="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Home Section -->
+    <div class="container" id="home">
+        <!-- Text -->
+        <div class="text-section">
+            <div class="typing-container">
+                <h1 class="typing-text">Hi, I'm <span class="name-highlight">Arunkarthik</span></h1>
+            </div>
+            <p>
+                I am a passionate web developer with expertise in building modern, user-friendly websites. 
+                I specialize in front-end and back-end development, crafting responsive designs, and optimizing 
+                web applications for better performance. Let's collaborate to turn your ideas into reality!
+            </p>
+            <div class="btn-container">
+                <a href="#contact" class="btn">Hire Me</a>
+                <a href="#contact" class="btn">Contact Me</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/arunkarthik-a-130704291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="https://i.ibb.co/xqWHvgSg/linkedin-1.png" alt="LinkedIn"></a>
+                <a href="https://github.com/Aruneh2005"><img src="https://i.ibb.co/SXD8hZD1/github.png" alt="GitHub"></a>
+                <a href="https://www.instagram.com/aruney___"><img src="https://i.ibb.co/RTm0zVb0/instagram-1.png" alt="Instagram"></a>
+            </div>
+        </div>
+
+        <!-- Profile Image -->
+        <div class="image-container">
+            <div class="animated-border">
+                <img class="profile-img" src="https://i.ibb.co/kVnRZP31/me-clear.png" alt="Arunkarthik">
+            </div>
+        </div>
+    </div>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <!-- Profile Image -->
+            <div class="image-container">
+                <div class="animated-border">
+                    <img class="profile-img" src="https://i.ibb.co/kVnRZP31/me-clear.png" alt="Arunkarthik">
+                </div>
+            </div>
+            <!-- Text -->
+            <div class="text-section">
+                <h2>About Me</h2>
+                <p>
+                    I am a passionate web developer and UI/UX designer with a strong focus on creating modern, responsive, and user-friendly websites. 
+                    I have experience in both front-end and back-end development, and I am always ready to take on new challenges. 
+                    Whether it's building a website from scratch or improving an existing one, I am dedicated to delivering high-quality work that meets the needs of my clients. 
+                    Let's work together to bring your ideas to life!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Services</h2>
+        <div class="services-container">
+            <!-- Website Developer -->
+            <div class="service-box" onclick="window.location.href='#contact'">
+                <h3>Website Developer</h3>
+                <p>
+                    I create modern, responsive, and user-friendly websites tailored to your needs. 
+                    From front-end design to back-end functionality, I ensure your website stands out.
+                </p>
+            </div>
+
+            <!-- UI/UX Designer -->
+            <div class="service-box" onclick="window.location.href='#contact'">
+                <h3>UI/UX Designer</h3>
+                <p>
+                    I design intuitive and visually appealing user interfaces that enhance user experience. 
+                    My designs are focused on usability and aesthetics.
+                </p>
+            </div>
+
+            <!-- Chatbot Creation -->
+            <div class="service-box" onclick="window.location.href='#contact'">
+                <h3>Chatbot Creation</h3>
+                <p>
+                    I build intelligent chatbots that automate customer interactions and improve engagement. 
+                    My chatbots are powered by AI and natural language processing.
+                </p>
+            </div>
+
+            <!-- Mentorship for Students -->
+            <div class="service-box" onclick="window.location.href='#contact'">
+                <h3>Mentorship for Students</h3>
+                <p>
+                    I provide mentorship to students in web development, UI/UX design, and AI. 
+                    My goal is to help students grow their skills and achieve their career goals.
+                </p>
+            </div>
+
+            <!-- Building AI Agents -->
+            <div class="service-box" onclick="window.location.href='#contact'">
+                <h3>Building AI Agents</h3>
+                <p>
+                    I develop AI agents that automate tasks, analyze data, and provide insights. 
+                    My AI solutions are designed to streamline processes and improve efficiency.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <!-- Full Stack Development -->
+            <div class="skill-item">
+                <h4>Full Stack Development</h4>
+                <p>
+                    Expertise in building end-to-end web applications using modern technologies like React, Node.js, and MongoDB.
+                </p>
+            </div>
+
+             <!-- UI/UX Design -->
+            <div class="skill-item">
+                <h4>UI/UX Design</h4>
+                <p>
+                    Proficient in creating user-centered designs using tools like Figma, Adobe XD, and Sketch. 
+                </p>
+            </div>
+
+            <!-- Leadership -->
+            <div class="skill-item">
+                <h4>Leadership</h4>
+                <p>
+                    Experienced in leading teams and managing projects effectively. 
+                </p>
+            </div>
+
+            <!-- Mentorship -->
+            <div class="skill-item">
+                <h4>Mentorship</h4>
+                <p>
+                    Passionate about mentoring students and professionals in web development, UI/UX design, and AI. 
+                </p>
+            </div>
+
+
+            <!-- AI Agent Creation -->
+            <div class="skill-item">
+                <h4>AI Agent Creation</h4>
+                <p>
+                    Expertise in developing AI agents that automate tasks, analyze data, and provide intelligent solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="datetime">Schedule Date and Time</label>
+            <input type="datetime-local" id="datetime" name="datetime" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Arunkarthik. All rights reserved.</p>
+    </footer>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
